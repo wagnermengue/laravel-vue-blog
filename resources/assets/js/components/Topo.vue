@@ -13,7 +13,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" v-bind:href="url">
-                    titulo
+                    {{titulo}}
                 </a>
             </div>
 
