@@ -44182,9 +44182,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['titulos', 'itens']
+    props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
+    methods: {
+        executaForm: function executaForm(index) {
+            document.getElementById(index).submit();
+        }
+    }
 });
 
 /***/ }),
@@ -44196,7 +44205,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("a", { attrs: { href: "#" } }, [_vm._v("Criar")]),
+    _vm.criar
+      ? _c("a", { attrs: { href: _vm.criar } }, [_vm._v("Criar")])
+      : _vm._e(),
     _vm._v(" "),
     _c("table", { staticClass: "table table-striped table-hover" }, [
       _c("thead", [
@@ -44207,7 +44218,9 @@ var render = function() {
               return _c("th", [_vm._v(_vm._s(titulo))])
             }),
             _vm._v(" "),
-            _c("th", [_vm._v("Ação")])
+            _vm.detalhe || _vm.editar || _vm.deletar
+              ? _c("th", [_vm._v("Ação")])
+              : _vm._e()
           ],
           2
         )
@@ -44215,7 +44228,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.itens, function(item) {
+        _vm._l(_vm.itens, function(item, index) {
           return _c(
             "tr",
             [
@@ -44223,7 +44236,65 @@ var render = function() {
                 return _c("td", [_vm._v(_vm._s(i))])
               }),
               _vm._v(" "),
-              _vm._m(0, true)
+              _vm.detalhe || _vm.editar || _vm.deletar
+                ? _c("td", [
+                    _vm._v("|\n                "),
+                    _vm.detalhe
+                      ? _c("a", { attrs: { href: _vm.detalhe } }, [
+                          _vm._v("Detalhe |")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.editar
+                      ? _c("a", { attrs: { href: _vm.editar } }, [
+                          _vm._v("Editar |")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.deletar && _vm.token
+                      ? _c(
+                          "form",
+                          {
+                            staticStyle: { display: "inline" },
+                            attrs: {
+                              id: index,
+                              action: _vm.deletar,
+                              method: "post"
+                            }
+                          },
+                          [
+                            _c("input", {
+                              attrs: {
+                                type: "hidden",
+                                name: "_method",
+                                value: "DELETE"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              attrs: { type: "hidden", name: "_token" },
+                              domProps: { value: _vm.token }
+                            }),
+                            _vm._v(" "),
+                            _vm.deletar
+                              ? _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        _vm.executaForm(index)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Apagar")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" |\n                ")
+                          ]
+                        )
+                      : _vm._e()
+                  ])
+                : _vm._e()
             ],
             2
           )
@@ -44232,20 +44303,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Detalhe")]),
-      _vm._v(" |\n                "),
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Editar")]),
-      _vm._v(" |\n                "),
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Apagar")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
