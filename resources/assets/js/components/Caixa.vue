@@ -8,7 +8,7 @@
             <i v-bind:class="defineIcone"></i>
             <!--<i class="ion ion-stats-bars"></i>-->
         </div>
-        <a href="#" class="small-box-footer">
+        <a v-bind:href="url" class="small-box-footer">
             Mais informações <i class="fa fa-arrow-circle-right"></i>
         </a>
     </div>
