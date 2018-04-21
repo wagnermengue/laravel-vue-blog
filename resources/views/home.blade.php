@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <painel titulo="Conteúdo Interno 1" cor="panel-danger">
-                                Teste de conteúdo
+                                <caixa></caixa>
                             </painel>
                         </div>
                         <div class="col-md-4">
