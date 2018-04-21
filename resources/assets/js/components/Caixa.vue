@@ -1,11 +1,11 @@
 <template>
-    <div class="small-box">
+    <div class="small-box" v-bind:style="defineCor">
         <div class="inner">
-            <h3>150</h3>
-            <p>Novos pedidos</p>
+            <h3>{{qtd}}</h3>
+            <p>{{titulo}}</p>
         </div>
         <div class="icon">
-            <i class="fa fa-shopping-cart"></i>
+            <i v-bind:class="defineIcone"></i>
             <!--<i class="ion ion-stats-bars"></i>-->
         </div>
         <a href="#" class="small-box-footer">
@@ -16,7 +16,15 @@
 
 <script>
     export default {
-
+        props: ['qtd', 'titulo', 'url', 'cor', 'icone'],
+        computed:{
+            defineCor:function(){
+                return 'background-color: '+ (this.cor || 'blue')+' !important';
+            },
+            defineIcone:function(){
+                return (this.icone || "fa fa-shopping-cart");
+            }
+        }
     }
 </script>
 
@@ -27,6 +35,7 @@
         display: block;
         margin-bottom: 20px;
         box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        color: #fff;
     }
     .small-box > .inner{
         padding: 10px;
@@ -55,6 +64,9 @@
         font-size: 90px;
         color: rgba(0,0,0,0.15);
     }
+    .small-box:hover .icon {
+        font-size: 80px;
+    }
     .small-box>.small-box-footer {
         position: relative;
         text-align: center;
@@ -65,5 +77,9 @@
         z-index: 10;
         background: rgba(0,0,0,0.1);
         text-decoration: none;
+    }
+    .small-box>.small-box-footer:hover {
+        color: #fff;
+        background: rgba(0,0,0,0.15);
     }
 </style>
