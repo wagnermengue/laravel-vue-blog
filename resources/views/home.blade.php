@@ -9,17 +9,17 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <painel titulo="Conteúdo Interno 1">
+                            <painel titulo="Conteúdo Interno 1" cor="panel-danger">
                                 Teste de conteúdo
                             </painel>
                         </div>
                         <div class="col-md-4">
-                            <painel titulo="Conteúdo Interno 2">
+                            <painel titulo="Conteúdo Interno 2" cor="orange">
                                 Teste de conteúdo
                             </painel>
                         </div>
                         <div class="col-md-4">
-                            <painel titulo="Conteúdo Interno 3">
+                            <painel titulo="Conteúdo Interno 3" cor="panel-primary">
                                 Teste de conteúdo
                             </painel>
                         </div>
