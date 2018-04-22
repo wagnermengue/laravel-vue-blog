@@ -33,12 +33,12 @@
 
 <script>
     export default {
-        props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemCol'],
+        props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemcol'],
         data: function () {
             return {
                 buscar : '',
                 ordemAux: this.ordem || 'asc',
-                ordemColAux: this.ordemCol || 0
+                ordemColAux: this.ordemcol || 0
             }
         },
         methods: {
