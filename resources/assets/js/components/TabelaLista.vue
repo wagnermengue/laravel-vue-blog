@@ -9,7 +9,7 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th v-for="titulo in titulos">{{titulo}}</th>
+                <th style="cursor:pointer" v-on:click="ordenaColuna(index)" v-for="(titulo, index) in titulos">{{titulo}}</th>
                 <th v-if="detalhe || editar || deletar">Ação</th>
             </tr>
             </thead>
@@ -22,7 +22,7 @@
                     <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar" method="post" style="display: inline">
                         <input type="hidden" name="_method" value="DELETE"/>
                         <input type="hidden" name="_token" v-bind:value="token"/>
-                        <a v-if="deletar" v-on:click="executaForm(index)">Apagar</a> |
+                        <a style="cursor:pointer" v-if="deletar" v-on:click="executaForm(index)">Apagar</a> |
                     </form>
                 </td>
             </tr>
@@ -42,6 +42,14 @@
         methods: {
             executaForm: function(index){
                 document.getElementById(index).submit();
+            },
+            ordenaColuna: function(coluna){
+                this.ordemCol = coluna;
+                if(this.ordem.toLowerCase() == 'asc'){
+                    this.ordem = 'desc';
+                }else{
+                    this.ordem = 'asc';
+                }
             }
         },
         computed: {
