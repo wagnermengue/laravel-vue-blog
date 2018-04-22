@@ -44178,7 +44178,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemCol'],
     data: function data() {
         return {
-            buscar: ''
+            buscar: '',
+            ordemAux: this.ordem || 'asc',
+            ordemColAux: this.ordemCol || 0
         };
     },
     methods: {
@@ -44186,11 +44188,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             document.getElementById(index).submit();
         },
         ordenaColuna: function ordenaColuna(coluna) {
-            this.ordemCol = coluna;
-            if (this.ordem.toLowerCase() == 'asc') {
-                this.ordem = 'desc';
+            this.ordemColAux = coluna;
+            if (this.ordemAux.toLowerCase() == 'asc') {
+                this.ordemAux = 'desc';
             } else {
-                this.ordem = 'asc';
+                this.ordemAux = 'asc';
             }
         }
     },
@@ -44198,8 +44200,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         lista: function lista() {
             var _this = this;
 
-            var ordem = this.ordem || 'asc';
-            var ordemCol = this.ordemCol || 0;
+            var ordem = this.ordemAux;
+            var ordemCol = this.ordemColAux;
 
             ordem = ordem.toLowerCase();
             ordemCol = parseInt(ordemCol);
