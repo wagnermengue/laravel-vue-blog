@@ -25,7 +25,7 @@
                     <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
                     <modal-link v-if="criar && modal" v-bind:item="item" v-bind:url="editar" tipo="link" nome="editar" titulo="Editar |"></modal-link>
 
-                    <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar" method="post" style="display: inline">
+                    <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar + item.id" method="post" style="display: inline">
                         <input type="hidden" name="_method" value="DELETE"/>
                         <input type="hidden" name="_token" v-bind:value="token"/>
                         <a style="cursor:pointer" v-if="deletar" v-on:click="executaForm(index)">Apagar</a> |

@@ -44411,7 +44411,7 @@ var render = function() {
                               staticStyle: { display: "inline" },
                               attrs: {
                                 id: index,
-                                action: _vm.deletar,
+                                action: _vm.deletar + item.id,
                                 method: "post"
                               }
                             },

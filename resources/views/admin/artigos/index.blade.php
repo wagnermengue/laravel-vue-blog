@@ -17,7 +17,7 @@
             <tabela-lista
                     v-bind:titulos="['#', 'Título', 'Descrição', 'Data']"
                     v-bind:itens="{{$listaArtigos}}"
-                    criar="#criar" detalhe="/admin/artigos/" editar="/admin/artigos/" deletar="#deletar" token="768768"
+                    criar="#criar" detalhe="/admin/artigos/" editar="/admin/artigos/" deletar="/admin/artigos/" token="{{csrf_token()}}"
                     ordem="ASC" ordemcol="1" modal="sim"
             >
             </tabela-lista>
