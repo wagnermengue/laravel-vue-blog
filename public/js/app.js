@@ -1414,11 +1414,11 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_Vuex__["a" /* default */]);
 //Vuex
 var store = new __WEBPACK_IMPORTED_MODULE_0_Vuex__["a" /* default */].Store({
     state: {
-        itens: {}
+        item: {}
     },
     mutations: {
-        setItens: function setItens(state, obj) {
-            state.itens = obj;
+        setItem: function setItem(state, obj) {
+            state.item = obj;
         }
     }
 });
@@ -44200,6 +44200,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemcol', 'modal'],
@@ -44235,34 +44236,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (ordem == 'asc') {
                 this.itens.sort(function (a, b) {
-                    if (a[ordemCol] > b[ordemCol]) {
+                    if (Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) {
                         return 1;
-                    };
-                    if (a[ordemCol] < b[ordemCol]) {
+                    }
+                    if (Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) {
                         return -1;
-                    };
+                    }
                     return 0;
                 });
             } else {
                 this.itens.sort(function (a, b) {
-                    if (a[ordemCol] < b[ordemCol]) {
+                    if (Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) {
                         return 1;
-                    };
-                    if (a[ordemCol] > b[ordemCol]) {
+                    }
+                    if (Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) {
                         return -1;
-                    };
+                    }
                     return 0;
                 });
             }
 
-            return this.itens.filter(function (res) {
-                for (var k = 0; k < res.length; k++) {
-                    if ((res[k] + "").toLowerCase().indexOf(_this.buscar.toLowerCase()) >= 0) {
-                        return true;
+            if (this.buscar) {
+                return this.itens.filter(function (res) {
+                    //tive que fazer isso pois estava recebendo um objeto mas no tutorial era pra vir um array
+                    //modificar depois
+                    var arr = Object.values(res);
+                    for (var k = 0; k < arr.length; k++) {
+                        if ((arr[k] + "").toLowerCase().indexOf(_this.buscar.toLowerCase()) >= 0) {
+                            return true;
+                        }
                     }
-                }
-                return false;
-            });
+                    return false;
+                });
+            }
             return this.itens;
         }
     }
@@ -44312,8 +44318,7 @@ var render = function() {
                 _vm.buscar = $event.target.value
               }
             }
-          }),
-          _vm._v(_vm._s(_vm.buscar) + "\n        ")
+          })
         ])
       ],
       1
@@ -44371,6 +44376,7 @@ var render = function() {
                       _vm.criar && _vm.modal
                         ? _c("modal-link", {
                             attrs: {
+                              item: item,
                               tipo: "link",
                               nome: "detalhe",
                               titulo: "Detalhe |"
@@ -44387,6 +44393,7 @@ var render = function() {
                       _vm.criar && _vm.modal
                         ? _c("modal-link", {
                             attrs: {
+                              item: item,
                               tipo: "link",
                               nome: "editar",
                               titulo: "Editar |"
@@ -44735,9 +44742,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['tipo', 'nome', 'titulo', 'css']
+    props: ['tipo', 'nome', 'titulo', 'css', 'item'],
+    methods: {
+        preencheFormulario: function preencheFormulario() {
+            this.$store.commit('setItem', this.item);
+        }
+    }
 });
 
 /***/ }),
@@ -44749,34 +44767,82 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("span", [
-    !_vm.tipo || _vm.tipo == "button"
-      ? _c(
-          "button",
-          {
-            class: _vm.css || "btn btn-primary",
-            attrs: {
-              type: "button",
-              "data-toggle": "modal",
-              "data-target": "#" + _vm.nome
-            }
-          },
-          [_vm._v(_vm._s(_vm.titulo))]
-        )
+    _vm.item
+      ? _c("span", [
+          !_vm.tipo || _vm.tipo == "button"
+            ? _c(
+                "button",
+                {
+                  class: _vm.css || "btn btn-primary",
+                  attrs: {
+                    type: "button",
+                    "data-toggle": "modal",
+                    "data-target": "#" + _vm.nome
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.preencheFormulario()
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.titulo))]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.tipo == "link"
+            ? _c(
+                "a",
+                {
+                  class: _vm.css || "",
+                  attrs: {
+                    href: "#",
+                    "data-toggle": "modal",
+                    "data-target": "#" + _vm.nome
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.preencheFormulario()
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.titulo))]
+              )
+            : _vm._e()
+        ])
       : _vm._e(),
     _vm._v(" "),
-    _vm.tipo == "link"
-      ? _c(
-          "a",
-          {
-            class: _vm.css || "",
-            attrs: {
-              href: "#",
-              "data-toggle": "modal",
-              "data-target": "#" + _vm.nome
-            }
-          },
-          [_vm._v(_vm._s(_vm.titulo))]
-        )
+    !_vm.item
+      ? _c("span", [
+          !_vm.tipo || _vm.tipo == "button"
+            ? _c(
+                "button",
+                {
+                  class: _vm.css || "btn btn-primary",
+                  attrs: {
+                    type: "button",
+                    "data-toggle": "modal",
+                    "data-target": "#" + _vm.nome
+                  }
+                },
+                [_vm._v(_vm._s(_vm.titulo))]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.tipo == "link"
+            ? _c(
+                "a",
+                {
+                  class: _vm.css || "",
+                  attrs: {
+                    href: "#",
+                    "data-toggle": "modal",
+                    "data-target": "#" + _vm.nome
+                  }
+                },
+                [_vm._v(_vm._s(_vm.titulo))]
+              )
+            : _vm._e()
+        ])
       : _vm._e()
   ])
 }

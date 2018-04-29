@@ -4,9 +4,10 @@
     <pagina tamanho="12">
         <painel titulo="Lista de artigos">
             <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
+
             <tabela-lista
-                    v-bind:titulos="['#', 'Título', 'Data']"
-                    v-bind:itens="[[1, 'PHP', '17/87'],[2, 'Vue', '15/47']]"
+                    v-bind:titulos="['#', 'Título', 'Descrição']"
+                    v-bind:itens="{{$listaArtigos}}"
                     criar="#criar" detalhe="#detalhe" editar="#editar" deletar="#deletar" token="768768"
                     ordem="ASC" ordemcol="1" modal="sim"
             >
@@ -34,11 +35,11 @@
             <formulario css="" action="#" method="post" enctype="" token="">
                 <div class="form-group">
                     <label for="titulo">Título</label>
-                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título">
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título" v-model="$store.state.item.titulo">
                 </div>
                 <div class="form-group">
                     <label for="titulo">Descrição</label>
-                    <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição">
+                    <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição" v-model="$store.state.item.descricao">
                 </div>
                 <button class="btn btn-info">Adicionar</button>
             </formulario>
