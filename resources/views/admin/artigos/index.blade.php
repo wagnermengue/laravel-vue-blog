@@ -5,6 +5,15 @@
         <painel titulo="Lista de artigos">
             <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
 
+            @if($errors->all())
+                <div class="alert alert-danger alert-dismissable" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    @foreach($errors->all() as $value)
+                        <li><strong>{{$value}}</strong></li>
+                    @endforeach
+                </div>
+            @endif
+
             <tabela-lista
                     v-bind:titulos="['#', 'Título', 'Descrição', 'Data']"
                     v-bind:itens="{{$listaArtigos}}"
