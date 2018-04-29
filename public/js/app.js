@@ -1382,7 +1382,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(61);
+module.exports = __webpack_require__(73);
 
 
 /***/ }),
@@ -1411,10 +1411,10 @@ Vue.component('painel', __webpack_require__(44));
 Vue.component('caixa', __webpack_require__(50));
 Vue.component('pagina', __webpack_require__(55));
 Vue.component('tabela-lista', __webpack_require__(58));
-Vue.component('migalhas', __webpack_require__(71));
-Vue.component('modal', __webpack_require__(74));
-Vue.component('modal-link', __webpack_require__(77));
-Vue.component('formulario', __webpack_require__(80));
+Vue.component('migalhas', __webpack_require__(61));
+Vue.component('modal', __webpack_require__(64));
+Vue.component('modal-link', __webpack_require__(67));
+Vue.component('formulario', __webpack_require__(70));
 
 var app = new Vue({
   el: '#app'
@@ -44177,9 +44177,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemcol'],
+    props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemcol', 'modal'],
     data: function data() {
         return {
             buscar: '',
@@ -44254,36 +44259,47 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "form-inline" }, [
-      _vm.criar
-        ? _c("a", { attrs: { href: _vm.criar } }, [_vm._v("Criar")])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group pull-right" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.buscar,
-              expression: "buscar"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "search", placeholder: "Buscar" },
-          domProps: { value: _vm.buscar },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+    _c(
+      "div",
+      { staticClass: "form-inline" },
+      [
+        _vm.criar && !_vm.modal
+          ? _c("a", { attrs: { href: _vm.criar } }, [_vm._v("Criar")])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.criar && _vm.modal
+          ? _c("modal-link", {
+              attrs: { tipo: "button", nome: "adicionar", titulo: "Criar" }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group pull-right" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.buscar,
+                expression: "buscar"
               }
-              _vm.buscar = $event.target.value
+            ],
+            staticClass: "form-control",
+            attrs: { type: "search", placeholder: "Buscar" },
+            domProps: { value: _vm.buscar },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.buscar = $event.target.value
+              }
             }
-          }
-        }),
-        _vm._v(_vm._s(_vm.buscar) + "\n        ")
-      ])
-    ]),
+          }),
+          _vm._v(_vm._s(_vm.buscar) + "\n        ")
+        ])
+      ],
+      1
+    ),
     _vm._v(" "),
     _c("table", { staticClass: "table table-striped table-hover" }, [
       _c("thead", [
@@ -44324,64 +44340,88 @@ var render = function() {
               }),
               _vm._v(" "),
               _vm.detalhe || _vm.editar || _vm.deletar
-                ? _c("td", [
-                    _vm._v("|\n                "),
-                    _vm.detalhe
-                      ? _c("a", { attrs: { href: _vm.detalhe } }, [
-                          _vm._v("Detalhe |")
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.editar
-                      ? _c("a", { attrs: { href: _vm.editar } }, [
-                          _vm._v("Editar |")
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.deletar && _vm.token
-                      ? _c(
-                          "form",
-                          {
-                            staticStyle: { display: "inline" },
+                ? _c(
+                    "td",
+                    [
+                      _vm._v("|\n                "),
+                      _vm.detalhe && !_vm.modal
+                        ? _c("a", { attrs: { href: _vm.detalhe } }, [
+                            _vm._v("Detalhe |")
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.criar && _vm.modal
+                        ? _c("modal-link", {
                             attrs: {
-                              id: index,
-                              action: _vm.deletar,
-                              method: "post"
+                              tipo: "link",
+                              nome: "detalhe",
+                              titulo: "Detalhe |"
                             }
-                          },
-                          [
-                            _c("input", {
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.editar && !_vm.modal
+                        ? _c("a", { attrs: { href: _vm.editar } }, [
+                            _vm._v("Editar |")
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.criar && _vm.modal
+                        ? _c("modal-link", {
+                            attrs: {
+                              tipo: "link",
+                              nome: "editar",
+                              titulo: "Editar |"
+                            }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.deletar && _vm.token
+                        ? _c(
+                            "form",
+                            {
+                              staticStyle: { display: "inline" },
                               attrs: {
-                                type: "hidden",
-                                name: "_method",
-                                value: "DELETE"
+                                id: index,
+                                action: _vm.deletar,
+                                method: "post"
                               }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              attrs: { type: "hidden", name: "_token" },
-                              domProps: { value: _vm.token }
-                            }),
-                            _vm._v(" "),
-                            _vm.deletar
-                              ? _c(
-                                  "a",
-                                  {
-                                    staticStyle: { cursor: "pointer" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.executaForm(index)
+                            },
+                            [
+                              _c("input", {
+                                attrs: {
+                                  type: "hidden",
+                                  name: "_method",
+                                  value: "DELETE"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: { type: "hidden", name: "_token" },
+                                domProps: { value: _vm.token }
+                              }),
+                              _vm._v(" "),
+                              _vm.deletar
+                                ? _c(
+                                    "a",
+                                    {
+                                      staticStyle: { cursor: "pointer" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.executaForm(index)
+                                        }
                                       }
-                                    }
-                                  },
-                                  [_vm._v("Apagar")]
-                                )
-                              : _vm._e(),
-                            _vm._v(" |\n                ")
-                          ]
-                        )
-                      : _vm._e()
-                  ])
+                                    },
+                                    [_vm._v("Apagar")]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" |\n                ")
+                            ]
+                          )
+                        : _vm._e()
+                    ],
+                    1
+                  )
                 : _vm._e()
             ],
             2
@@ -44403,29 +44443,14 @@ if (false) {
 
 /***/ }),
 /* 61 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(72)
+var __vue_script__ = __webpack_require__(62)
 /* template */
-var __vue_template__ = __webpack_require__(73)
+var __vue_template__ = __webpack_require__(63)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -44464,7 +44489,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 72 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44493,7 +44518,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 73 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44527,15 +44552,15 @@ if (false) {
 }
 
 /***/ }),
-/* 74 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(75)
+var __vue_script__ = __webpack_require__(65)
 /* template */
-var __vue_template__ = __webpack_require__(76)
+var __vue_template__ = __webpack_require__(66)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -44574,7 +44599,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 75 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44595,7 +44620,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 76 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44633,15 +44658,15 @@ if (false) {
 }
 
 /***/ }),
-/* 77 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(78)
+var __vue_script__ = __webpack_require__(68)
 /* template */
-var __vue_template__ = __webpack_require__(79)
+var __vue_template__ = __webpack_require__(69)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -44680,7 +44705,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 78 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44698,14 +44723,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 79 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("span", [
     !_vm.tipo || _vm.tipo == "button"
       ? _c(
           "button",
@@ -44748,15 +44773,15 @@ if (false) {
 }
 
 /***/ }),
-/* 80 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(81)
+var __vue_script__ = __webpack_require__(71)
 /* template */
-var __vue_template__ = __webpack_require__(82)
+var __vue_template__ = __webpack_require__(72)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -44795,7 +44820,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 81 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44833,7 +44858,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 82 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44879,6 +44904,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-8304f0ae", module.exports)
   }
 }
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
