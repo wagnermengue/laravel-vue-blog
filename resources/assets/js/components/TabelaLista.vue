@@ -84,8 +84,6 @@
 
                 if(this.buscar) {
                     return this.itens.filter(res => {
-                        //tive que fazer isso pois estava recebendo um objeto mas no tutorial era pra vir um array
-                        //modificar depois
                         var arr = Object.values(res);
                         for (let k = 0; k < arr.length; k++) {
                             if ((arr[k] + "").toLowerCase().indexOf(this.buscar.toLowerCase()) >= 0) {
