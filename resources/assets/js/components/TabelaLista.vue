@@ -23,7 +23,7 @@
                     <modal-link v-if="criar && modal" v-bind:item="item" v-bind:url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe |"></modal-link>
 
                     <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-                    <modal-link v-if="criar && modal" v-bind:item="item" tipo="link" nome="editar" titulo="Editar |"></modal-link>
+                    <modal-link v-if="criar && modal" v-bind:item="item" v-bind:url="editar" tipo="link" nome="editar" titulo="Editar |"></modal-link>
 
                     <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar" method="post" style="display: inline">
                         <input type="hidden" name="_method" value="DELETE"/>

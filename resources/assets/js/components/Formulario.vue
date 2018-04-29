@@ -1,6 +1,6 @@
 <template>
     <form v-bind:class="css" v-bind:action="action" v-bind:method="defineMethod" v-bind:enctype="enctype">
-        <input v-if="alterMethod" type="hidden" name="_method" v-bind:value="alterMethod"/>
+        <input v-if="alteraMethod" type="hidden" name="_method" v-bind:value="alteraMethod"/>
         <input v-if="token" type="hidden" name="_token" v-bind:value="token"/>
         <slot></slot>
     </form>
@@ -11,7 +11,7 @@
         props:['css', 'action', 'method', 'enctype', 'token'],
         data: function (){
             return {
-                alterMethod: ''
+                alteraMethod: ''
             }
         },
         computed:{
@@ -20,10 +20,10 @@
                     return this.method.toLowerCase();
                 }
                 if(this.method.toLowerCase() == 'put') {
-                    return this.alteraMethod = 'put';
+                    this.alteraMethod = 'put';
                 }
                 if(this.method.toLowerCase() == 'delete') {
-                    return this.alteraMethod = 'delete';
+                    this.alteraMethod = 'delete';
                 }
                 return 'post';
             }

@@ -44396,6 +44396,7 @@ var render = function() {
                         ? _c("modal-link", {
                             attrs: {
                               item: item,
+                              url: _vm.editar,
                               tipo: "link",
                               nome: "editar",
                               titulo: "Editar |"
@@ -44977,7 +44978,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['css', 'action', 'method', 'enctype', 'token'],
     data: function data() {
         return {
-            alterMethod: ''
+            alteraMethod: ''
         };
     },
     computed: {
@@ -44986,10 +44987,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return this.method.toLowerCase();
             }
             if (this.method.toLowerCase() == 'put') {
-                return this.alteraMethod = 'put';
+                this.alteraMethod = 'put';
             }
             if (this.method.toLowerCase() == 'delete') {
-                return this.alteraMethod = 'delete';
+                this.alteraMethod = 'delete';
             }
             return 'post';
         }
@@ -45015,10 +45016,10 @@ var render = function() {
       }
     },
     [
-      _vm.alterMethod
+      _vm.alteraMethod
         ? _c("input", {
             attrs: { type: "hidden", name: "_method" },
-            domProps: { value: _vm.alterMethod }
+            domProps: { value: _vm.alteraMethod }
           })
         : _vm._e(),
       _vm._v(" "),
