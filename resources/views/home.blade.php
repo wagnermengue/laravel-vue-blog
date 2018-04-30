@@ -29,7 +29,7 @@
                     <caixa qtd="300" titulo="Artigos" url="{{route('artigos.index')}}" cor="" icone=""></caixa>
                 </div>
                 <div class="col-md-4">
-                    <caixa qtd="490" titulo="Usuários" url="#" cor="orange" icone="ion-social-snapchat"></caixa>
+                    <caixa qtd="490" titulo="Usuários" url="{{route('usuarios.index')}}" cor="orange" icone="ion-social-snapchat"></caixa>
                 </div>
                 <div class="col-md-4">
                     <caixa qtd="1120" titulo="Requests" url="#" cor="green" icone="ion-android-hand"></caixa>
