@@ -26,13 +26,13 @@
 
             <painel titulo="Conteúdo 1">
                 <div class="col-md-4">
-                    <caixa qtd="300" titulo="Artigos" url="{{route('artigos.index')}}" cor="" icone=""></caixa>
+                    <caixa qtd="{{$totalArtigos}}" titulo="Artigos" url="{{route('artigos.index')}}" cor="" icone=""></caixa>
                 </div>
                 <div class="col-md-4">
-                    <caixa qtd="490" titulo="Usuários" url="{{route('usuarios.index')}}" cor="orange" icone="ion-social-snapchat"></caixa>
+                    <caixa qtd="{{$totalUsuarios}}" titulo="Usuários" url="{{route('usuarios.index')}}" cor="orange" icone="ion-social-snapchat"></caixa>
                 </div>
                 <div class="col-md-4">
-                    <caixa qtd="1120" titulo="Autores" url="{{route('autores.index')}}" cor="green" icone="ion-android-hand"></caixa>
+                    <caixa qtd="{{$totalAutores}}" titulo="Autores" url="{{route('autores.index')}}" cor="green" icone="ion-android-hand"></caixa>
                 </div>
             </painel>
             <painel titulo="Conteúdo 2">
