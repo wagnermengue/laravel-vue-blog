@@ -32,7 +32,7 @@
                     <caixa qtd="490" titulo="Usuários" url="{{route('usuarios.index')}}" cor="orange" icone="ion-social-snapchat"></caixa>
                 </div>
                 <div class="col-md-4">
-                    <caixa qtd="1120" titulo="Requests" url="#" cor="green" icone="ion-android-hand"></caixa>
+                    <caixa qtd="1120" titulo="Autores" url="{{route('autores.index')}}" cor="green" icone="ion-android-hand"></caixa>
                 </div>
             </painel>
             <painel titulo="Conteúdo 2">
