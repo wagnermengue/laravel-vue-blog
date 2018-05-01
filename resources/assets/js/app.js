@@ -40,6 +40,7 @@ Vue.component('modal', require('./components/modal/Modal.vue'));
 Vue.component('modal-link', require('./components/modal/ModalLink.vue'));
 Vue.component('formulario', require('./components/Formulario.vue'));
 //Vue.component('ckeditor', require('vue-ckeditor2'));
+Vue.component('artigo-card', require('./components/ArtigoCard.vue'));
 
 import ckeditor from 'vue-ckeditor2';
 
