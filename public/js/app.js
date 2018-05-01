@@ -46088,9 +46088,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['titulo', 'descricao', 'link', 'imagem', 'alt', 'sm', 'md']
+    props: ['titulo', 'descricao', 'link', 'imagem', 'alt', 'sm', 'md', 'autor', 'data']
 });
 
 /***/ }),
@@ -46109,6 +46110,8 @@ var render = function() {
         _c("img", { attrs: { src: _vm.imagem, alt: _vm.alt } }),
         _vm._v(" "),
         _c("div", { staticClass: "caption" }, [
+          _c("small", [_vm._v(_vm._s(_vm.data) + " - " + _vm._s(_vm.autor))]),
+          _vm._v(" "),
           _c("h3", [_vm._v(_vm._s(_vm.titulo))]),
           _vm._v(" "),
           _c("p", [_vm._v(_vm._s(_vm.descricao))]),

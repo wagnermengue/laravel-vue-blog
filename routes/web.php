@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('site');
+    $lista = \App\Artigo::listaArtigosSite();
+    return view('site', compact('lista'));
 });
 
 Auth::routes();

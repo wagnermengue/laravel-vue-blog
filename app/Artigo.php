@@ -32,6 +32,19 @@ class Artigo extends Model
         return $listaArtigos;
     }
 
+    public static function listaArtigosSite()
+    {
+        $listaArtigos = DB::table('artigos')
+            ->join('users', 'users.id', '=', 'artigos.user_id')
+            ->select('artigos.id', 'artigos.titulo', 'artigos.descricao', 'users.name as autor', 'artigos.data')
+            ->whereNull('deleted_at')
+            ->whereDate('artigos.data','<=',date('Y-m-d'))
+            ->orderBy('artigos.data', 'DESC')
+            ->paginate(3);
+
+        return $listaArtigos;
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');

@@ -3,6 +3,7 @@
         <div class="thumbnail">
             <img :src="imagem" :alt="alt">
             <div class="caption">
+                <small>{{data}} - {{autor}}</small>
                 <h3>{{titulo}}</h3>
                 <p>{{descricao}}</p>
                 <p><a :href="link" class="btn btn-primary" role="button">Leia mais</a></p>
@@ -13,6 +14,6 @@
 
 <script>
     export default {
-        props:['titulo', 'descricao', 'link', 'imagem', 'alt', 'sm', 'md']
+        props:['titulo', 'descricao', 'link', 'imagem', 'alt', 'sm', 'md', 'autor', 'data']
     }
 </script>
