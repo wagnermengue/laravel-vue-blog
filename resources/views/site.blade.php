@@ -8,7 +8,7 @@
                     <artigo-card
                         titulo="{{$item->titulo}}"
                         descricao="{{$item->descricao}}"
-                        link="#"
+                        link="{{route('artigo', [$item->id, str_slug($item->titulo)])}}"
                         imagem="https://thumbs.dreamstime.com/z/blank-notepad-over-laptop-coffee-cup-office-wooden-table-35295571.jpg"
                         alt="Alt da imagem"
                         autor="{{$item->autor}}"

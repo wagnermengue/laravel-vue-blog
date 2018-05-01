@@ -14,7 +14,15 @@
 Route::get('/', function () {
     $lista = \App\Artigo::listaArtigosSite();
     return view('site', compact('lista'));
-});
+})->name('site');
+
+Route::get('/artigo/{id}/{titulo?}', function ($id) {
+    $artigo = \App\Artigo::find($id);
+    if($artigo){
+        return view('artigo', compact('artigo'));
+    }
+    return redirect()->route('site');
+})->name('artigo');
 
 Auth::routes();
 
