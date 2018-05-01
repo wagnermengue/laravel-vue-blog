@@ -7,7 +7,7 @@
                 @foreach($lista as $item)
                     <artigo-card
                         titulo="{{$item->titulo}}"
-                        descricao="{{$item->descricao}}"
+                        descricao="{{str_limit($item->descricao, 40, '...')}}"
                         link="{{route('artigo', [$item->id, str_slug($item->titulo)])}}"
                         imagem="https://thumbs.dreamstime.com/z/blank-notepad-over-laptop-coffee-cup-office-wooden-table-35295571.jpg"
                         alt="Alt da imagem"
