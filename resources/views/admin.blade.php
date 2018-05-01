@@ -34,6 +34,9 @@
                 <div class="col-md-4">
                     <caixa qtd="{{$totalAutores}}" titulo="Autores" url="{{route('autores.index')}}" cor="green" icone="ion-android-hand"></caixa>
                 </div>
+                <div class="col-md-4">
+                    <caixa qtd="{{$totalAdms}}" titulo="Administradores" url="{{route('adm.index')}}" cor="green" icone="ion-android-hand"></caixa>
+                </div>
             </painel>
             <painel titulo="Conteúdo 2">
                 Teste de conteúdo

@@ -2,7 +2,7 @@
 
 @section('content')
     <pagina tamanho="12">
-        <painel titulo="Lista de usuários">
+        <painel titulo="Lista de administradores">
             <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
 
             @if($errors->all())
@@ -17,7 +17,7 @@
             <tabela-lista
                     v-bind:titulos="['#', 'Nome', 'E-mail']"
                     v-bind:itens="{{json_encode($listaModelo)}}"
-                    criar="#criar" detalhe="/admin/usuarios/" editar="/admin/usuarios/"
+                    criar="#criar" detalhe="/admin/adm/" editar="/admin/adm/" deletar="/admin/amd/" token="{{csrf_token()}}"
                     ordem="ASC" ordemcol="1" modal="sim"
             >
             </tabela-lista>
@@ -27,7 +27,7 @@
         </painel>
     </pagina>
     <modal nome="adicionar" titulo="Adicionar">
-        <formulario id="form-adicionar" css="" action="{{route('usuarios.store')}}" method="post" enctype="" token="{{csrf_token()}}">
+        <formulario id="form-adicionar" css="" action="{{route('adm.store')}}" method="post" enctype="" token="{{csrf_token()}}">
             <div class="form-group">
                 <label for="name">Nome</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Nome" value="{{old('name')}}">
@@ -37,11 +37,8 @@
                 <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" value="{{old('email')}}">
             </div>
             <div class="form-group">
-                <label for="autor">Autor</label>
-                <select class="form-control" id="autor" name="autor">
-                    <option {{(old('autor')&& old('autor') == 'N' ) ? 'selected' : ''}} value="N">Não</option>
-                    <option {{(old('autor')&& old('autor') == 'S' ) ? 'selected' : ''}} value="S">Sim</option>
-                </select>
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" id="password" name="password" value="{{old('password')}}">
             </div>
             <div class="form-group">
                 <label for="admin">Administrador</label>
@@ -50,10 +47,6 @@
                     <option {{(old('admin')&& old('admin') == 'S' ) ? 'selected' : ''}} value="S">Sim</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" class="form-control" id="password" name="password" value="{{old('password')}}">
-            </div>
         </formulario>
         <span slot="botoes">
             <button form="form-adicionar" class="btn btn-info">Adicionar</button>
@@ -61,7 +54,7 @@
     </modal>
 
     <modal nome="editar" titulo="Editar">
-        <formulario id="form-editar" css="" v-bind:action="'/admin/usuarios/'+$store.state.item.id" method="put" enctype="" token="{{csrf_token()}}">
+        <formulario id="form-editar" css="" v-bind:action="'/admin/adm/'+$store.state.item.id" method="put" enctype="" token="{{csrf_token()}}">
             <div class="form-group">
                 <label for="name">Nome</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Nome" v-model="$store.state.item.name">
@@ -69,13 +62,6 @@
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" v-model="$store.state.item.email">
-            </div>
-            <div class="form-group">
-                <label for="autor">Autor</label>
-                <select class="form-control" id="autor" name="autor" v-model="$store.state.item.autor">
-                    <option value="N">Não</option>
-                    <option value="S">Sim</option>
-                </select>
             </div>
             <div class="form-group">
                 <label for="admin">Administrador</label>

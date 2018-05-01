@@ -32,4 +32,5 @@ Route::middleware('auth')->prefix('admin')->namespace('admin')->group(function()
     Route::resource('artigos', 'ArtigosController');
     Route::resource('usuarios', 'UsuariosController');
     Route::resource('autores', 'AutoresController');
+    Route::resource('adm', 'AdmController');
 });
