@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function (\Illuminate\Http\Request $request) {
-    
+
     if(isset($request->busca) && $request->busca != ""){
         $busca = $request->busca;
         $lista = \App\Artigo::listaArtigosSite(3,$busca);
