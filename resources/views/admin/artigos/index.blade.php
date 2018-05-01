@@ -37,8 +37,16 @@
                 <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição" value="{{old('descricao')}}">
             </div>
             <div class="form-group">
-                <label for="conteudo">Conteúdo</label>
-                <textarea class="form-control" name="conteudo" id="conteudo">{{old('conteudo')}}</textarea>
+                <label for="adicionarConteudo">Conteúdo</label>
+                <ckeditor
+                        name="conteudo" id="adicionarConteudo" value="{{old('conteudo')}}"
+                        v-bind:config="{
+                                toolbar: [
+                                  [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript' ]
+                                ],
+                                height: 200
+                        }">
+                </ckeditor>
             </div>
             <div class="form-group">
                 <label for="data">Data</label>
@@ -61,8 +69,16 @@
                 <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição" v-model="$store.state.item.descricao">
             </div>
             <div class="form-group">
-                <label for="conteudo">Conteúdo</label>
-                <textarea class="form-control" name="conteudo" id="conteudo" v-model="$store.state.item.conteudo"></textarea>
+                <label for="editarConteudo">Conteúdo</label>
+                <ckeditor
+                        name="conteudo" id="editarConteudo" v-model="$store.state.item.conteudo"
+                        v-bind:config="{
+                                toolbar: [
+                                  [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript' ]
+                                ],
+                                height: 200
+                        }">
+                </ckeditor>
             </div>
             <div class="form-group">
                 <label for="data">Data</label>

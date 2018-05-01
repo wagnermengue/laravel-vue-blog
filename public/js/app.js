@@ -1392,6 +1392,7 @@ module.exports = __webpack_require__(74);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Vuex__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_ckeditor2__ = __webpack_require__(84);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -1432,12 +1433,18 @@ Vue.component('migalhas', __webpack_require__(62));
 Vue.component('modal', __webpack_require__(65));
 Vue.component('modal-link', __webpack_require__(68));
 Vue.component('formulario', __webpack_require__(71));
+//Vue.component('ckeditor', require('vue-ckeditor2'));
+
+
 
 var app = new Vue({
     el: '#app',
     store: store,
     mounted: function mounted() {
         document.getElementById('app').style.display = 'block';
+    },
+    components: {
+        ckeditor: __WEBPACK_IMPORTED_MODULE_1_vue_ckeditor2__["a" /* default */]
     }
 });
 
@@ -45996,6 +46003,23 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+!function(){if("undefined"!=typeof document){var t=document.head||document.getElementsByTagName("head")[0],e=document.createElement("style"),n=' .ckeditor::after { content: ""; display: table; clear: both; } ';e.type="text/css",e.styleSheet?e.styleSheet.cssText=n:e.appendChild(document.createTextNode(n)),t.appendChild(e)}}();var inc=(new Date).getTime(),Ckeditor={render:function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"ckeditor"},[e("textarea",{attrs:{name:this.name,id:this.id,types:this.types,config:this.config},domProps:{value:this.value}})])},staticRenderFns:[],name:"vue-ckeditor",props:{name:{type:String,default:function(){return"editor-"+ ++inc}},value:{type:String},id:{type:String,default:function(){return"editor-"+inc}},types:{type:String,default:function(){return"classic"}},config:{type:Object,default:function(){}}},data:function(){return{destroyed:!1}},computed:{instance:function(){return CKEDITOR.instances[this.id]}},watch:{value:function(t){try{this.instance&&this.update(t)}catch(t){}}},mounted:function(){this.create()},beforeDestroy:function(){this.destroy()},methods:{create:function(){var t=this;"undefined"==typeof CKEDITOR?console.log("CKEDITOR is missing (http://ckeditor.com/)"):("inline"===this.types?CKEDITOR.inline(this.id,this.config):CKEDITOR.replace(this.id,this.config),this.instance.setData(this.value),this.instance.on("instanceReady",function(){t.instance.setData(t.value)}),this.instance.on("change",this.onChange),this.instance.on("blur",this.onBlur),this.instance.on("focus",this.onFocus))},update:function(t){this.instance.getData()!==t&&this.instance.setData(t,{internal:!1})},destroy:function(){try{this.destroyed||(this.instance.focusManager.blur(!0),this.instance.removeAllListeners(),this.instance.destroy(),this.destroyed=!0)}catch(t){}},onChange:function(){var t=this.instance.getData();t!==this.value&&this.$emit("input",t)},onBlur:function(){this.$emit("blur",this.instance)},onFocus:function(){this.$emit("focus",this.instance)}}};/* harmony default export */ __webpack_exports__["a"] = (Ckeditor);
+
 
 /***/ })
 /******/ ]);
