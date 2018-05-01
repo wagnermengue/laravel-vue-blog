@@ -11,9 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    $lista = \App\Artigo::listaArtigosSite();
-    return view('site', compact('lista'));
+Route::get('/', function (\Illuminate\Http\Request $request) {
+    
+    if(isset($request->busca) && $request->busca != ""){
+        $busca = $request->busca;
+        $lista = \App\Artigo::listaArtigosSite(3,$busca);
+    }else{
+        $lista = \App\Artigo::listaArtigosSite(3);
+        $busca = "";
+    }
+
+    return view('site',compact('lista','busca'));
 })->name('site');
 
 Route::get('/artigo/{id}/{titulo?}', function ($id) {
