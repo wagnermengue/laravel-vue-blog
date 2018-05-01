@@ -28,7 +28,9 @@
 
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{{ route('admin') }}">Admin</a>
+                                @can('ehAutor')
+                                    <a href="{{ route('admin') }}">Admin</a>
+                                @endcan
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

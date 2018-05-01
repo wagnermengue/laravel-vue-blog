@@ -25,18 +25,22 @@
             </div>
 
             <painel titulo="Conteúdo 1">
-                <div class="col-md-4">
-                    <caixa qtd="{{$totalArtigos}}" titulo="Artigos" url="{{route('artigos.index')}}" cor="" icone=""></caixa>
-                </div>
-                <div class="col-md-4">
-                    <caixa qtd="{{$totalUsuarios}}" titulo="Usuários" url="{{route('usuarios.index')}}" cor="orange" icone="ion-social-snapchat"></caixa>
-                </div>
-                <div class="col-md-4">
-                    <caixa qtd="{{$totalAutores}}" titulo="Autores" url="{{route('autores.index')}}" cor="green" icone="ion-android-hand"></caixa>
-                </div>
-                <div class="col-md-4">
-                    <caixa qtd="{{$totalAdms}}" titulo="Administradores" url="{{route('adm.index')}}" cor="green" icone="ion-android-hand"></caixa>
-                </div>
+                @can('ehAutor')
+                    <div class="col-md-4">
+                        <caixa qtd="{{$totalArtigos}}" titulo="Artigos" url="{{route('artigos.index')}}" cor="" icone=""></caixa>
+                    </div>
+                @endcan
+                @can('ehAdmin')
+                    <div class="col-md-4">
+                        <caixa qtd="{{$totalUsuarios}}" titulo="Usuários" url="{{route('usuarios.index')}}" cor="orange" icone="ion-social-snapchat"></caixa>
+                    </div>
+                    <div class="col-md-4">
+                        <caixa qtd="{{$totalAutores}}" titulo="Autores" url="{{route('autores.index')}}" cor="green" icone="ion-android-hand"></caixa>
+                    </div>
+                    <div class="col-md-4">
+                        <caixa qtd="{{$totalAdms}}" titulo="Administradores" url="{{route('adm.index')}}" cor="green" icone="ion-android-hand"></caixa>
+                    </div>
+                @endcan
             </painel>
             <painel titulo="Conteúdo 2">
                 Teste de conteúdo
